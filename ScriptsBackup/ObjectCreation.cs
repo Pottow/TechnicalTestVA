@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class ObjectCreation : MonoBehaviour
 {
@@ -46,8 +47,10 @@ public class ObjectCreation : MonoBehaviour
         createdObjectList.Add(createdObject);
         createdObjectID = createdObjectList.IndexOf(createdObjectList [^1]);
         createdObject.name = "Object" + createdObjectID;
+        GetComponent<ObjectSelection>().DeselectObjectForReselection();
         GetComponent<ObjectSelection>().SelectObject(createdObject);
         GetComponent<CameraMovement>().CameraMoveOff();
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     GameObject CreateCube() {

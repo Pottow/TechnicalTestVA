@@ -40,46 +40,75 @@ public class KeyboardAndClicks : MonoBehaviour
                 GetComponent<CameraMovement>().MoveRight();
             }
         }
-        //object keyboard movmement controls
+       //object keyboard rotation controls
         else{
-            if (Input.GetKey(KeyCode.E))
-            {
-                GetComponent<ObjectMovement>().MoveUp();
+            if(GetComponent<ObjectRotation>().toggleRotation){ 
+                if (Input.GetKey(KeyCode.E))
+                {
+                    GetComponent<ObjectRotation>().RotateAroundUpAxis();
+                }
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    GetComponent<ObjectRotation>().RotateAroundDownAxis();
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    GetComponent<ObjectRotation>().RotateAroundForwardAxis();
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    GetComponent<ObjectRotation>().RotateAroundLeftAxis();
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    GetComponent<ObjectRotation>().RotateAroundBackwardAxis();
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    GetComponent<ObjectRotation>().RotateAroundRightAxis();
+                }
             }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                GetComponent<ObjectMovement>().MoveDown();
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                GetComponent<ObjectMovement>().MoveForward();
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                GetComponent<ObjectMovement>().MoveLeft();
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                GetComponent<ObjectMovement>().MoveBackward();
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                GetComponent<ObjectMovement>().MoveRight();
+            //object keyboard movemement controls
+            else{
+                if (Input.GetKey(KeyCode.E))
+                {
+                    GetComponent<ObjectMovement>().MoveUp();
+                }
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    GetComponent<ObjectMovement>().MoveDown();
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    GetComponent<ObjectMovement>().MoveForward();
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    GetComponent<ObjectMovement>().MoveLeft();
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    GetComponent<ObjectMovement>().MoveBackward();
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    GetComponent<ObjectMovement>().MoveRight();
+                }
             }
         }
 
         //keyboard object manipulation controls
-           if (Input.GetKeyDown(KeyCode.KeypadEnter))
+           if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("space key was pressed");
+            GetComponent<ObjectSelection>().DeselectObject();
         }
            if (Input.GetKeyDown(KeyCode.Delete))
         {
-            print("space key was pressed");
+            GetComponent<ObjectDeletion>().DeleteObject();
         }
           if (Input.GetKeyDown(KeyCode.R))
         {
-            print("space key was pressed");
+            GetComponent<ObjectRotation>().ToggleRotation();
         }
 
 
@@ -104,8 +133,6 @@ public class KeyboardAndClicks : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-
-        Debug.Log(GetComponent<CameraMovement>().cameraMoveToggle);
 
     }
 }

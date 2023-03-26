@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectSelection : MonoBehaviour
 {
@@ -23,11 +24,13 @@ public class ObjectSelection : MonoBehaviour
         rayOrigin = mainCamera.ScreenPointToRay(Input.mousePosition); 
         if (Physics.Raycast (rayOrigin, out hit, 100)){
             objectClicked = hit.transform.gameObject;
-            DeselectObject();
-            SelectObject(objectClicked);
+            if (!EventSystem.current.IsPointerOverGameObject()){
+                DeselectObjectForReselection();
+                SelectObject(objectClicked);
+            }
         }
-        else{
-            DeselectAllObject();
+        else if (!EventSystem.current.IsPointerOverGameObject()){
+            DeselectObject();
         }
     }
 
@@ -39,27 +42,30 @@ public class ObjectSelection : MonoBehaviour
         selectedObject = objSelectedOrCreated;
         HighlightSelectedObject(selectedObject);
         GetComponent<ObjectMovement>().mainObject = selectedObject;
+        GetComponent<ObjectRotation>().mainObjectRotation = selectedObject;
         GetComponent<CameraMovement>().CameraMoveOff();
+        GetComponent<ObjectModification>().ShowModifiers();
         isSelectedObject = true;
 
         previousSelectedObject = selectedObject;
     }
 
     public void DehighlightSelectedObject(){
-        if (previousSelectedObject is not null){
+        if (previousSelectedObject != null){
             previousSelectedObject.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 
-    public void DeselectObject(){
-        if (previousSelectedObject is not null){
+    public void DeselectObjectForReselection(){
+        if (previousSelectedObject != null){
             DehighlightSelectedObject ();
         }
         isSelectedObject = false;
     }
 
-    public void DeselectAllObject(){
-        DeselectObject();
+    public void DeselectObject(){
+        DeselectObjectForReselection();
+        GetComponent<ObjectModification>().HideModifiers();
         GetComponent<CameraMovement>().CameraMoveOn();
 
     }

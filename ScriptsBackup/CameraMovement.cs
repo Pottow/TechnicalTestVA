@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 
 public class CameraMovement : MonoBehaviour
@@ -27,30 +28,36 @@ public class CameraMovement : MonoBehaviour
     }
 
     public void MoveUp (){
+        EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position +=  mainCamera.transform.up * verticalCamSpeed * Time.deltaTime;
     }
 
     public void MoveDown (){
+        EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position -=  mainCamera.transform.up * verticalCamSpeed * Time.deltaTime;
     }
 
     public void MoveLeft (){
+        EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position -=  mainCamera.transform.right * horizontalCamSpeed * Time.deltaTime;
     }
 
     public void MoveRight (){
+        EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
          mainCamera.transform.position +=  mainCamera.transform.right * horizontalCamSpeed * Time.deltaTime;
     }
 
     public void MoveForward (){
+        EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position +=  mainCamera.transform.forward * horizontalCamSpeed * Time.deltaTime;
     }
     public void MoveBackward (){
+        EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position -=  mainCamera.transform.forward * horizontalCamSpeed * Time.deltaTime;
     }
