@@ -134,5 +134,9 @@ public class KeyboardAndClicks : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
+        //software controls
+         if (Input.GetKeyDown(KeyCode.Escape)){
+            Application.Quit();
+        }
     }
 }
