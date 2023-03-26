@@ -128,7 +128,6 @@ public class KeyboardAndClicks : MonoBehaviour
         if (Input.GetMouseButton(1)){
             GetComponent<CameraMovement>().Rotate();
         }
-
         if (Input.GetMouseButtonUp(1)){
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

@@ -16,10 +16,12 @@ public class ObjectSelection : MonoBehaviour
     Camera mainCamera;
     GameObject objectClicked;
     
+    //assign the main camera
     private void Start() {
         mainCamera = Camera.main;
     }
     
+    //on click, check whether an object, the gui, or the void has been clicked and respond
     public void ClickObject(){
         rayOrigin = mainCamera.ScreenPointToRay(Input.mousePosition); 
         if (Physics.Raycast (rayOrigin, out hit, 100)){
@@ -34,10 +36,12 @@ public class ObjectSelection : MonoBehaviour
         }
     }
 
+    //highlight the selected object in yellow
     public void HighlightSelectedObject(GameObject objectSelected){
         objectSelected.GetComponent<Renderer>().material.color = Color.yellow; 
     }
 
+    //assign the selectedObject variable and pass it to other scripts
     public void SelectObject(GameObject objSelectedOrCreated){
         selectedObject = objSelectedOrCreated;
         HighlightSelectedObject(selectedObject);
@@ -50,12 +54,14 @@ public class ObjectSelection : MonoBehaviour
         previousSelectedObject = selectedObject;
     }
 
+    //remove highlight when an object is deselected
     public void DehighlightSelectedObject(){
         if (previousSelectedObject != null){
             previousSelectedObject.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 
+    //deselect one object by selecting another
     public void DeselectObjectForReselection(){
         if (previousSelectedObject != null){
             DehighlightSelectedObject ();
@@ -63,6 +69,7 @@ public class ObjectSelection : MonoBehaviour
         isSelectedObject = false;
     }
 
+    //deselect all objects and switch back to camera view
     public void DeselectObject(){
         DeselectObjectForReselection();
         GetComponent<ObjectModification>().HideModifiers();

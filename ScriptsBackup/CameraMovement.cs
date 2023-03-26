@@ -22,46 +22,53 @@ public class CameraMovement : MonoBehaviour
     float mousePosX;
     float mousePosY;
 
-
+    //assign the main camera
     private void Start() {
     mainCamera = Camera.main;
     }
 
+    //move the camera upwards
     public void MoveUp (){
         EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position +=  mainCamera.transform.up * verticalCamSpeed * Time.deltaTime;
     }
 
+    //move the camera downwards
     public void MoveDown (){
         EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position -=  mainCamera.transform.up * verticalCamSpeed * Time.deltaTime;
     }
 
+     //move the camera left
     public void MoveLeft (){
         EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position -=  mainCamera.transform.right * horizontalCamSpeed * Time.deltaTime;
     }
 
+  //move the camera right
     public void MoveRight (){
         EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
          mainCamera.transform.position +=  mainCamera.transform.right * horizontalCamSpeed * Time.deltaTime;
     }
 
+    //move the camera forward
     public void MoveForward (){
         EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position +=  mainCamera.transform.forward * horizontalCamSpeed * Time.deltaTime;
     }
+     //move the camera backward
     public void MoveBackward (){
         EventSystem.current.SetSelectedGameObject(null);
         currentCamPosition = mainCamera.transform.position;
         mainCamera.transform.position -=  mainCamera.transform.forward * horizontalCamSpeed * Time.deltaTime;
     }
 
+    //rotate the camera to look around
     public void Rotate (){
         currentCamRotationX = mainCamera.transform.rotation.x;
         currentCamRotationY = mainCamera.transform.rotation.y;

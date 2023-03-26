@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectDeletion : MonoBehaviour
 {
+    //removes the selected object
     public void DeleteObject(){
         if (GetComponent<ObjectSelection>().isSelectedObject == true){
            

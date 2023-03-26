@@ -13,6 +13,7 @@ public class ObjectCreation : MonoBehaviour
     public List<GameObject> createdObjectList = new List<GameObject>();
     int createdObjectID;
 
+    //finds the dropdown box containing the choice of shapes
     private void Start() {
         shapeChoice = GameObject.Find("ShapeChoiceBox");
     }
@@ -53,6 +54,7 @@ public class ObjectCreation : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
+    //creates a specific shape: cube, sphere, etc.
     GameObject CreateCube() {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.position = new Vector3(0, 0, 0);

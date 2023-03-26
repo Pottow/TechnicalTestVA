@@ -151,7 +151,7 @@ public class ObjectModification : MonoBehaviour
         isUserMakingModifications = false;
     }
 
-
+    //cleans the user input to be only numeric. Non-numeric and null go to default values.
     public float TestForBadInput(string shapeModInput, bool isScale){
         if (!float.TryParse(shapeModInput, out testForBadInput)
                 || shapeModInput == null){
@@ -165,6 +165,7 @@ public class ObjectModification : MonoBehaviour
         return testForBadInput;
     }
 
+    //increments the input field value up by 1 and modifies the object accordingly
     public void IncrementModifier(GameObject inputField){
         userModifying();
         inputField.GetComponent<TMP_InputField>().text = 
@@ -173,6 +174,7 @@ public class ObjectModification : MonoBehaviour
         userStoppedModifying();
     }
 
+     //decrements the input field value down by 1 and modifies the object accordingly
      public void DecrementModifier(GameObject inputField){
         userModifying();
         inputField.GetComponent<TMP_InputField>().text = 
